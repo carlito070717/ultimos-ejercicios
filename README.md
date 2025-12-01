@@ -1,11 +1,13 @@
+**Nombre:** Carlos Alfonso Llanes
 
-# Soluciones de Álgebra — Carlos Llanes
-
-**Nombre:** Carlos Alfonso Llanes  
 **Materia:** Fundamentos de Álgebra
+
 **Maestro:** Jorge Javier Pedrozo
+
 **Escuela:** Tecnológico de Software
+
 **Fecha:** 03/12/2025
+
 **Grupo:** 1C
 
 
