@@ -49,8 +49,8 @@ $`\left[\begin{array}{ccc|c}
 0 & 1 & -2 & -4
 \end{array}\right]`$
 
-2. **Eliminar segundo pivote:**  
-\(F_2 \leftarrow F_2 + 3F_3\)
+2. **Eliminar segundo pivote:**
+~~\(F_2 \leftarrow F_2 + 3F_3\)
 
 $`\left[\begin{array}{ccc|c}
 1 & 1 & 1 & 6 \\
