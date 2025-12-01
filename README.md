@@ -11,7 +11,7 @@
 
 ---
 
-# ⚙️ Ejercicio 1 — Resolver el sistema por todos los métodos
+#  Ejercicio 1 — Resolver el sistema por todos los métodos
 
 Sistema:
 \[
@@ -24,7 +24,7 @@ x + 2y - z = 2
 
 ---
 
-## 🔸 Método Gauss
+##  Método Gauss
 
 Matriz aumentada:
 
@@ -55,9 +55,7 @@ $`x = 1`$.
 
 ---
 
-## 🔸 Método Gauss–Jordan
-
-Continuamos desde la forma escalonada:
+##  Método Gauss–Jordan
 
 1. $`F_3 \leftarrow \frac{1}{2}F_3`$  
 2. $`F_2 \leftarrow F_2 + F_3`$  
@@ -74,7 +72,7 @@ $`\begin{bmatrix}
 
 ---
 
-## 🔸 Matriz inversa
+##  Matriz inversa
 
 Matriz de coeficientes:
 
@@ -96,7 +94,7 @@ $`X = \begin{bmatrix} 1 \\ 3 \\ 2 \end{bmatrix}`$
 
 ---
 
-## 🔸 Regla de Cramer
+##  Regla de Cramer
 
 Determinante:
 
@@ -110,7 +108,7 @@ $`z = 2`$
 
 ---
 
-#  Solución final Ejercicio 1
+#  Solución Ejercicio 1
 
 $`(x,y,z) = (1,3,2)`$
 
