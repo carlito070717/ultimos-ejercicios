@@ -1,301 +1,165 @@
-# Soluciones detalladas — Sistemas de Ecuaciones
 
-Este README contiene la resolución paso a paso (con matrices en cada paso) de los ejercicios mostrados en la imagen, lista para usar en tu proyecto.
+# Soluciones — Sistemas y aplicación práctica
+
+A continuación están las resoluciones y procedimientos solicitados. Donde corresponda, se usan **matrices** en el formato requerido: $`\begin{bmatrix} ... \end{bmatrix}`$
 
 ---
 
-## Ejercicio 1
-
+## Ejercicio 1 — Resolver con todos los métodos
 Sistema:
+\begin{align*}
+x + y + z &= 6 \\
+2x - y + z &= 3 \\
+x + 2y - z &= 2
+\end{align*}
 
-$$
-\begin{cases}
-x+y+z=6\
-2x-y+z=3\
-x+2y-z=2
-\end{cases}
-$$
+Representación matricial $A\mathbf{x}=\mathbf{b}$:
+$` \begin{bmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 2 & -1 \end{bmatrix}`$ \quad
+$` \begin{bmatrix} x \\ y \\ z \end{bmatrix}`$ = $` \begin{bmatrix} 6 \\ 3 \\ 2 \end{bmatrix}`$
 
-Matriz de coeficientes y vector independiente:
+### a) Método de Gauss (eliminación hacia adelante y sustitución)
+Formamos la matriz aumentada:
+$` \left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\[2pt] 2 & -1 & 1 & 3 \\[2pt] 1 & 2 & -1 & 2 \end{array}\right]`$
 
-$$
-A=\begin{pmatrix}1&1&1\2&-1&1\1&2&-1\end{pmatrix},\quad
-\mathbf b=\begin{pmatrix}6\3\2\end{pmatrix}.
-$$
+1. Eliminar la primera columna debajo de la fila 1:
+   - $F_2 \leftarrow F_2 - 2F_1$ → $[\,0,\ -3,\ -1\;|\; -9\,]$
+   - $F_3 \leftarrow F_3 - F_1$ → $[\,0,\ 1,\ -2\;|\; -4\,]$
 
-El sistema tiene determinante $\det(A)=7\neq0$, por tanto solución única. La solución final es $\boxed{(x,y,z)=(1,2,3)}$.
+   Nueva aumentada:
+   $` \left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\[2pt] 0 & -3 & -1 & -9 \\[2pt] 0 & 1 & -2 & -4 \end{array}\right]`$
 
-### a) Método de Gauss (eliminación y sustitución regresiva)
+2. Hacer pivote en la fila 2 (columna 2): intercambiamos signos para comodidad o usamos combinación:
+   - $F_2 \leftrightarrow F_3$ (opcional) o eliminar usando $F_2 \leftarrow F_2 + 3F_3$.
+   Usaremos: $F_2 \leftarrow F_2 + 3F_3$:
+   - $F_2$: $[0, -3, -1 | -9] + 3[0,1,-2|-4] = [0,0,-7|-21]$
+
+   Matriz:
+   $` \left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\[2pt] 0 & 1 & -2 & -4 \\[2pt] 0 & 0 & -7 & -21 \end{array}\right]`$ 
+   (Nota: la fila 2 y 3 reordenadas para claridad).
+
+3. Sustitución hacia atrás:
+   - De la última fila: $-7z = -21 \Rightarrow z = 3$.
+   - Fila 2: $y - 2z = -4 \Rightarrow y - 2(3) = -4 \Rightarrow y - 6 = -4 \Rightarrow y = 2$.
+   - Fila 1: $x + y + z = 6 \Rightarrow x + 2 + 3 = 6 \Rightarrow x = 1$.
+
+**Solución:** $x=1,\ y=2,\ z=3$.
+
+### b) Gauss–Jordan (reducción por filas hasta forma reducida)
+Partimos de la matriz aumentada original y realizamos operaciones hasta tener la identidad a la izquierda.
 
 Matriz aumentada inicial:
+$` \left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 2 & -1 & 1 & 3 \\ 1 & 2 & -1 & 2 \end{array}\right]`$
 
-$$
-[ A\mid\mathbf b ] = \left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6\
-2 & -1 & 1 & 3\
-1 & 2 & -1 & 2
-\end{array}\right]
-$$
+Operaciones resumidas (mostraré las operaciones clave y resultado final reducido):
+- $F_2 \leftarrow F_2 - 2F_1$; $F_3 \leftarrow F_3 - F_1$ → como en Gauss.
+- Normalizar y eliminar para conseguir la matriz identidad a la izquierda. Tras las operaciones obtenemos:
+$` \left[\begin{array}{ccc|c} 1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 2 \\ 0 & 0 & 1 & 3 \end{array}\right]`$
 
-**Paso 1 — eliminar debajo del pivote (fila 1):**
-
-Operaciones:
-
-* $R_2 \leftarrow R_2 - 2R_1$.
-* $R_3 \leftarrow R_3 - R_1$.
-
-Resultado:
-
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6\
-0 & -3 & -1 & -9\
-0 & 1 & -2 & -4
-\end{array}\right]
-$$
-
-**Paso 2 — eliminar debajo del pivote (fila 2):**
-
-Operación:
-
-* $R_3 \leftarrow R_3 + \tfrac{1}{3}R_2$ (porque $R_2$ tiene $-3$ en la columna 2).
-
-Cálculo explícito: $R_3 + \tfrac{1}{3}R_2 = [0,1,-2,-4] + \tfrac{1}{3}[0,-3,-1,-9] = [0,0,-7/3,-7]$.
-
-Matriz triangular superior:
-
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6\
-0 & -3 & -1 & -9\
-0 & 0 & -\tfrac{7}{3} & -7
-\end{array}\right]
-$$
-
-**Sustitución regresiva:**
-
-* Última fila: $-\tfrac{7}{3}z=-7 \Rightarrow z=3$.
-* Segunda fila: $-3y - z = -9 \Rightarrow -3y - 3 = -9 \Rightarrow y=2$.
-* Primera fila: $x+y+z=6 \Rightarrow x+2+3=6 \Rightarrow x=1$.
-
-Solución: $\boxed{(1,2,3)}$.
-
----
-
-### b) Método Gauss–Jordan (reducción completa)
-
-Iniciando con la misma aumentada y aplicando operaciones hasta la forma reducida por filas (RREF), se llega al estado:
-
-$$
-\left[\begin{array}{ccc|c}
-1&0&0&1\
-0&1&0&2\
-0&0&1&3
-\end{array}\right]
-$$
-
-De lectura directa: $x=1,\ y=2,\ z=3$.
-
----
+De donde se lee inmediatamente: $x=1,\ y=2,\ z=3$.
 
 ### c) Método de la matriz inversa
+Si $A$ es la matriz de coeficientes, y $A$ es invertible, $\mathbf{x}=A^{-1}\mathbf{b}$.
 
-Si $A$ es invertible, $\mathbf x = A^{-1}\mathbf b$.
+$A = $ $` \begin{bmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 2 & -1 \end{bmatrix}`$
 
-Cálculo de $A^{-1}$ (adjunta/determinante o mediante Gauss-Jordan para $[A|I]$):
+Se calcula $A^{-1}$ (omitimos el desarrollo completo del cálculo de la adjunta para brevedad; se puede obtener por Gauss–Jordan sobre $[A|I]$). Resultado:
+$` \begin{bmatrix} -\tfrac{1}{7} & \tfrac{3}{7} & \tfrac{2}{7} \\[2pt] \tfrac{3}{7} & -\tfrac{2}{7} & \tfrac{1}{7} \\[2pt] \tfrac{5}{7} & -\tfrac{1}{7} & -\tfrac{3}{7} \end{bmatrix}`$
 
-$$
-A^{-1}=\frac{1}{7}\begin{pmatrix}-1&3&2\3&-2&1\5&-1&-3\end{pmatrix}.
-$$
-
-Multiplicando:
-
-$$
-\mathbf x = A^{-1}\mathbf b = \begin{pmatrix}1\2\3\end{pmatrix}.
-$$
-
----
+Multiplicando $A^{-1}\mathbf{b}$:
+$` \begin{bmatrix} -\tfrac{1}{7} & \tfrac{3}{7} & \tfrac{2}{7} \\ \tfrac{3}{7} & -\tfrac{2}{7} & \tfrac{1}{7} \\ \tfrac{5}{7} & -\tfrac{1}{7} & -\tfrac{3}{7} \end{bmatrix}`$ $` \begin{bmatrix} 6 \\ 3 \\ 2 \end{bmatrix}`$ = $` \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}`$.
 
 ### d) Regla de Cramer
+Sea $A$ y $b$ como antes. Determinante de $A$: $\det(A)=7$ (no nulo → solución única).
 
-Determinante $D=\det(A)=7$.
+Formamos matrices $A_x,A_y,A_z$ reemplazando la columna correspondiente por $b$:
+- $A_x = $ $` \begin{bmatrix} 6 & 1 & 1 \\ 3 & -1 & 1 \\ 2 & 2 & -1 \end{bmatrix}`$ → $\det(A_x)=7$ → $x=\det(A_x)/\det(A)=1$.
+- $A_y = $ $` \begin{bmatrix} 1 & 6 & 1 \\ 2 & 3 & 1 \\ 1 & 2 & -1 \end{bmatrix}`$ → $\det(A_y)=14$ → $y=14/7=2$.
+- $A_z = $ $` \begin{bmatrix} 1 & 1 & 6 \\ 2 & -1 & 3 \\ 1 & 2 & 2 \end{bmatrix}`$ → $\det(A_z)=21$ → $z=21/7=3$.
 
-Matrices con la columna de términos independientes sustituyendo la columna correspondiente:
-
-$$
-A_x=\begin{pmatrix}6&1&1\3&-1&1\2&2&-1\end{pmatrix},\quad
-A_y=\begin{pmatrix}1&6&1\2&3&1\1&2&-1\end{pmatrix},\quad
-A_z=\begin{pmatrix}1&1&6\2&-1&3\1&2&2\end{pmatrix}.
-$$
-
-Determinantes: $\det(A_x)=7,\ \det(A_y)=14,\ \det(A_z)=21$.
-
-Por Cramer:
-
-$$
-x=\frac{\det(A_x)}{D}=1,\quad y=2,\quad z=3.
-$$
+Confirma: $x=1,y=2,z=3$.
 
 ---
 
 ## Ejercicio 2 — Identificar tipo de solución
+Para cada sistema determinamos si tiene solución única, infinitas o ninguna.
 
-**a)**
-$$\begin{cases}x+y=3\2x+2y=6\end{cases}$$
-La segunda ecuación es múltiplo de la primera (dependientes) ⇒ **infinitas soluciones** (recta $x+y=3$).
+a) \(\begin{cases} x+y=3 \\ 2x+2y=6 \end{cases}\)
 
-**b)**
-$$\begin{cases}x+y=3\2x+2y=7\end{cases}$$
-La segunda no es múltiplo consistente de la primera ⇒ rectas paralelas incompatibles ⇒ **ninguna solución**.
+Multiplicando la primera ecuación por 2 se obtiene la segunda; las ecuaciones son dependientes → **infinitas soluciones** (dos ecuaciones equivalentes, 1 ecuación independiente con 2 incógnitas).
 
-**c)**
-$$\begin{cases}x+y=3\x-y=1\end{cases}$$
-Sumando: $2x=4\Rightarrow x=2$. Luego $y=1$. ⇒ **solución única** $(2,1)$.
+b) \(\begin{cases} x+y=3 \\ 2x+2y=7 \end{cases}\)
+
+La segunda ecuación sería 2 veces la primera en la parte izquierda, pero las constantes no coinciden (6 ≠ 7) → **sistema incompatible, ninguna solución**.
+
+c) \(\begin{cases} x+y=3 \\ x-y=1 \end{cases}\)
+
+Sumando: \(2x=4 \Rightarrow x=2\). Luego \(y=1\). Ecuaciones independientes → **solución única**: \(x=2,\ y=1\).
 
 ---
 
-## Ejercicio 3 — Sistema 4×4 (método más eficiente: eliminación de Gauss)
-
+## Ejercicio 3 — Sistema \(4\times 4\)
 Sistema:
+\begin{align*}
+x + y + z + w &= 10 \\
+2x + y - z + w &= 5 \\
+x - y + z - w &= 1 \\
+x + y - z + 2w &= 8
+\end{align*}
 
-$$
-\begin{cases}
-x+y+z+w=10\
-2x+y-z+w=5\
-x-y+z-w=1\
-x+y-z+2w=8
-\end{cases}
-$$
+Matriz de coeficientes y vector independiente:
+$` \begin{bmatrix} 1 & 1 & 1 & 1 \\[2pt] 2 & 1 & -1 & 1 \\[2pt] 1 & -1 & 1 & -1 \\[2pt] 1 & 1 & -1 & 2 \end{bmatrix}`$ , \quad $` \begin{bmatrix} 10 \\ 5 \\ 1 \\ 8 \end{bmatrix}`$
 
-Matriz aumentada inicial:
+Es eficiente usar eliminación de Gauss (o factorización LU). A continuación se muestra el resultado clave y la verificación por inversa:
 
-$$
-\left[\begin{array}{cccc|c}
-1&1&1&1&10\
-2&1&-1&1&5\
-1&-1&1&-1&1\
-1&1&-1&2&8
-\end{array}\right]
-$$
+Determinante de la matriz: $\det(A)=-6$ (distinto de 0 → solución única).
 
-**Paso A — eliminar debajo de $R_1$:**
+Resolviendo (por eliminación o inversa) se obtiene:
+\[
+x = 2,\quad y = -\tfrac{1}{2},\quad z = \tfrac{7}{2},\quad w = 5.
+\]
 
-* $R_2\leftarrow R_2-2R_1$.
-* $R_3\leftarrow R_3-R_1$.
-* $R_4\leftarrow R_4-R_1$.
+Verificación rápida: sustituir en la primera ecuación:
+\(2 + (-1/2) + 7/2 + 5 = 2 -0.5 +3.5 +5 =10\) ✔
 
-Resultado:
+También la matriz inversa (calculada por Gauss–Jordan sobre $[A|I]$) es:
+$` \begin{bmatrix} 0 & \tfrac{1}{3} & \tfrac{1}{3} & 0 \\[2pt] \tfrac{1}{2} & \tfrac{2}{3} & -\tfrac{5}{6} & -1 \\[2pt] \tfrac{1}{2} & -\tfrac{1}{3} & \tfrac{1}{6} & 0 \\[2pt] 0 & -\tfrac{2}{3} & \tfrac{1}{3} & 1 \end{bmatrix}`$
 
-$$
-\left[\begin{array}{cccc|c}
-1&1&1&1&10\
-0&-1&-3&-1&-15\
-0&-2&0&-2&-9\
-0&0&-2&1&-2
-\end{array}\right]
-$$
-
-**Paso B — usar $R_2$ para eliminar $R_3$ en la columna 2:**
-
-* Factor: $(-2)/(-1)=2$ → $R_3\leftarrow R_3 - 2R_2$.
-
-Se obtiene:
-
-$$
-\left[\begin{array}{cccc|c}
-1&1&1&1&10\
-0&-1&-3&-1&-15\
-0&0&6&0&21\
-0&0&-2&1&-2
-\end{array}\right]
-$$
-
-**Paso C — usar $R_3$ para eliminar $R_4$ (columna 3):**
-
-* Factor: $(-2)/6 = -1/3$. Hacemos $R_4 \leftarrow R_4 + \tfrac{1}{3}R_3$.
-
-Triangular superior final:
-
-$$
-\left[\begin{array}{cccc|c}
-1&1&1&1&10\
-0&-1&-3&-1&-15\
-0&0&6&0&21\
-0&0&0&1&5
-\end{array}\right]
-$$
-
-**Sustitución regresiva:**
-
-* $w=5$.
-* $6z=21\Rightarrow z=7/2$.
-* Segunda fila: $-y -3z - w = -15$. Sustituyendo $z=7/2, w=5$:
-  [-0.5em]
-  $-y - 3(7/2) -5 = -15 \Rightarrow -y - 21/2 -5 = -15$. Resolviendo: $y = -1/2$.
-* Primera fila: $x + y + z + w = 10$. Sustituyendo $y,z,w$: $x - 1/2 + 7/2 +5 =10 \Rightarrow x=2$.
-
-Solución:
-
-$$
-\boxed{(x,y,z,w) = \left(2, -\tfrac{1}{2}, \tfrac{7}{2}, 5\right)}
-$$
-
-(La matriz tiene determinante distinto de cero → solución única.)
+y $\mathbf{x}=A^{-1}\mathbf{b}$ da el mismo resultado mostrado arriba.
 
 ---
 
 ## Ejercicio 4 — Aplicación práctica (producción)
+La empresa produce tres productos: Premium (P), Standard (S) y Utilitario (U).
+Recursos usados: res (R), pollo (Q), cerdo (C).
+Consumos por unidad de producto:
+- Premium: 2 kg res, 3 kg pollo, 1 kg cerdo.
+- Standard: 1 kg res, 1 kg pollo, 2 kg cerdo.
+- Utilitario: 3 kg res, 2 kg pollo, 1 kg cerdo.
 
-Tres productos: Premium ($P$), Standard ($S$), Utilitario ($U$).
+Disponibles: 100 kg res, 120 kg pollo, 80 kg cerdo.
 
-Consumo por unidad (kg):
+Planteamiento (variables: \(P,S,U\) = unidades a fabricar):
+\begin{align*}
+2P + 1S + 3U &= 100 \quad\text{(res)}\\
+3P + 1S + 2U &= 120 \quad\text{(pollo)}\\
+1P + 2S + 1U &= 80  \quad\text{(cerdo)}
+\end{align*}
 
-* Premium: 2 res, 3 pollo, 1 cerdo.
-* Standard: 1 res, 1 pollo, 2 cerdo.
-* Utilitario: 3 res, 2 pollo, 1 cerdo.
+Matriz y vector:
+$` \begin{bmatrix} 2 & 1 & 3 \\[2pt] 3 & 1 & 2 \\[2pt] 1 & 2 & 1 \end{bmatrix}`$ $` \begin{bmatrix} P \\ S \\ U \end{bmatrix}`$ = $` \begin{bmatrix} 100 \\ 120 \\ 80 \end{bmatrix}`$
 
-Disponibles: res = 100 kg; pollo = 120 kg; cerdo = 80 kg.
+Determinante: $\det=8 \neq 0$ → solución única (aunque no necesariamente entera). Resolviendo:
+\[
+P = \tfrac{55}{2} = 27.5,\quad S = \tfrac{45}{2} = 22.5,\quad U = \tfrac{15}{2} = 7.5.
+\]
 
-Sistema:
-
-$$
-\begin{cases}
-2P + 1S + 3U = 100 \
-3P + 1S + 2U = 120 \
-1P + 2S + 1U = 80
-\end{cases}
-$$
-
-Matriz aumentada:
-
-$$
-\left[\begin{array}{ccc|c}
-2&1&3&100\
-3&1&2&120\
-1&2&1&80
-\end{array}\right]
-$$
-
-Determinante de la matriz de coeficientes: $8\neq0$ → solución única.
-
-Resolución (mediante eliminación o $A^{-1}\mathbf b$) da:
-
-$$
-\begin{pmatrix}P\S\U\end{pmatrix}=\begin{pmatrix}55/2\45/2\15/2\end{pmatrix}=\left(27.5,;22.5,;7.5\right).
-$$
-
-**Interpretación:** con los recursos disponibles se obtienen $P=27.5$, $S=22.5$, $U=7.5$ unidades.
-
-> **Nota:** Si las unidades deben ser enteras, hay que redondear o ajustar lotes; la solución real entera dependerá de la política de producción (p.ej. fabricar solo unidades completas y luego calcular sobrantes o faltantes).
+Interpretación: con las cantidades dadas se pueden fabricar en teoría 27.5 unidades Premium, 22.5 Standard y 7.5 Utilitario. Si se requieren **unidades enteras** será necesario redondear o plantear un problema de optimización entero (enteros) o ajustar mezcla de productos — el sistema lineal clásico da la solución real continua indicada.
 
 ---
 
-## Observaciones finales
-
-* Todas las matrices y pasos relevantes están incluidos arriba.
-* Si quieres el mismo contenido convertido a un archivo `README.md` descargable o exportado en otro formato (por ejemplo `README.pdf`), dime y lo genero.
-* Si quieres que los cálculos intermedios se muestren con entrada aritmética más detallada o quieres que convierta las fracciones a decimales en todos los pasos, lo actualizo.
+### Observaciones finales
+- Donde \(\det(A)\neq 0\) el sistema tiene solución única (puede hallarse por Gauss, Gauss–Jordan, inversa o Cramer).  
+- Cuando las ecuaciones son proporcionales y el término independiente también lo es hay infinitas soluciones; si los términos independientes no siguen la proporcionalidad el sistema es incompatible (ninguna solución).
 
 ---
-
-*Hecho para: Carlos Alfonso Llanes*
+*Archivo generado automáticamente con los procedimientos solicitados.*
