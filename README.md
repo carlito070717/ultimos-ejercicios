@@ -1,9 +1,16 @@
 **Nombre:** Carlos Alfonso Llanes
+
 **Materia:** Fundamentos de Álgebra
+
 **Maestro:** Jorge Javier Pedrozo
+
 **Escuela:** Tecnológico de Software
+
 **Fecha:** 03/12/2025
+
 **Grupo:** 1C
+
+## Objetivos: Documentar los ejercicios de resolución y cálculo de matrices mediante los distintos métodos.
 
 
 ---
