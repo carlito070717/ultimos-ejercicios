@@ -56,6 +56,12 @@ $`x = 1`$.
 ---
 
 ##  Método Gauss–Jordan
+# Partiendo de la matriz anterior:
+$`\begin{bmatrix}
+1 & 1 & 1 & | & 6 \\
+0 & -3 & -1 & | & -9 \\
+0 & 0 & 2 & | & 4
+\end{bmatrix}`$
 
 1. $`F_3 \leftarrow \frac{1}{2}F_3`$  
 2. $`F_2 \leftarrow F_2 + F_3`$  
