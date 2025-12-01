@@ -137,14 +137,14 @@ Sistema compatible determinado → solución única.
 
 Resolver:
 
-$`\[
+$`
 \begin{cases}
 x + y + z + w = 10 \\
 2x + y - z + w = 5 \\
 x - y + z - w = 1 \\
 x + y - z + 2w = 8
 \end{cases}
-\]`$
+`$
 
 Matriz aumentada:
 
