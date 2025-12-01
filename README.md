@@ -2,9 +2,12 @@
 # Soluciones de Álgebra — Carlos Llanes
 
 **Nombre:** Carlos Alfonso Llanes  
-**Materia:** Álgebra Lineal  
-**Ejercicios:** Sistemas de ecuaciones, tipos de solución y aplicación práctica  
-**Formato de matrices requerido:** $`\begin{bmatrix} -1 & 4 \\ 2 & -8 \end{bmatrix}`$
+**Materia:** Fundamentos de Álgebra
+**Maestro:** Jorge Javier Pedrozo
+**Escuela:** Tecnológico de Software
+**Fecha:** 03/12/2025
+**Grupo:** 1C
+
 
 ---
 
@@ -107,13 +110,13 @@ $`z = 2`$
 
 ---
 
-# ✔️ Solución final Ejercicio 1
+#  Solución final Ejercicio 1
 
 $`(x,y,z) = (1,3,2)`$
 
 ---
 
-# 🧩 Ejercicio 2 — Tipo de solución
+#  Ejercicio 2 — Tipo de solución
 
 ### a)  
 Sistema dependiente → solución infinita.
@@ -126,7 +129,7 @@ Sistema compatible determinado → solución única.
 
 ---
 
-# 🧮 Ejercicio 3 — Sistema 4×4
+#  Ejercicio 3 — Sistema 4×4
 
 Resolver:
 
@@ -166,7 +169,7 @@ $`x = 0`$
 
 ---
 
-# 🧪 Ejercicio 4 — Aplicación práctica
+#  Ejercicio 4 — Aplicación práctica
 
 Productos: Premium (P), Standard (S), Utilitario (U)  
 Materias: res (R), pollo (Q), cerdo (C)
@@ -202,7 +205,7 @@ $`P = 0`$
 
 ---
 
-# ✅ Resultado final Ejercicio 4
+# Resultado final Ejercicio 4
 
 La empresa puede fabricar:
 
@@ -211,5 +214,4 @@ La empresa puede fabricar:
 - **20 Utilitario**
 
 ---
-
-Fin del documento.  
+ 
