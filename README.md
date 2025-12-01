@@ -180,9 +180,9 @@ $`\begin{bmatrix}
 \end{bmatrix}
 \begin{bmatrix}
 P \\ S \\ U
-\end{bmatrix}
+\end{bmatrix}`$
 =
-\begin{bmatrix}
+$`\begin{bmatrix}
 100 \\ 120 \\ 80
 \end{bmatrix}`$
 
