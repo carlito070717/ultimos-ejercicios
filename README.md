@@ -1,14 +1,14 @@
-# Soluciones — Sistemas y Aplicación Práctica
+
+# Soluciones de Álgebra — Carlos Llanes
 
 **Nombre:** Carlos Alfonso Llanes  
-**Materia:** Fundamentos de Álgebra  
-**Maestro:** Jorge Javier Pedrozo  
-**Escuela:** Tecnológico de Software  
-**Fecha:** 03/12/2025  
+**Materia:** Álgebra Lineal  
+**Ejercicios:** Sistemas de ecuaciones, tipos de solución y aplicación práctica  
+**Formato de matrices requerido:** $`\begin{bmatrix} -1 & 4 \\ 2 & -8 \end{bmatrix}`$
 
 ---
 
-## Ejercicio 1 — Resolver con todos los métodos
+# ⚙️ Ejercicio 1 — Resolver el sistema por todos los métodos
 
 Sistema:
 \[
@@ -19,171 +19,197 @@ x + 2y - z = 2
 \end{cases}
 \]
 
-Representación matricial \(A\mathbf{x}=\mathbf{b}\):
-
-$`\begin{bmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 2 & -1 \end{bmatrix}`$
-$`\begin{bmatrix} x \\ y \\ z \end{bmatrix}`$
-=
-$`\begin{bmatrix} 6 \\ 3 \\ 2 \end{bmatrix}`$
-
 ---
 
-### **a) Método de Gauss**
+## 🔸 Método Gauss
 
-Matriz aumentada inicial:
+Matriz aumentada:
 
-$`\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6 \\
-2 & -1 & 1 & 3 \\
-1 & 2 & -1 & 2
-\end{array}\right]`$
-
-1. **Eliminar primera columna:**
-
-- \(F_2 \leftarrow F_2 - 2F_1\)  
-- \(F_3 \leftarrow F_3 - F_1\)
-
-$`\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6 \\
-0 & -3 & -1 & -9 \\
-0 & 1 & -2 & -4
-\end{array}\right]`$
-
-2. **Eliminar segundo pivote:**
-~~\(F_2 \leftarrow F_2 + 3F_3\)
-
-$`\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 6 \\
-0 & 1 & -2 & -4 \\
-0 & 0 & -7 & -21
-\end{array}\right]`$
-
-3. **Sustitución hacia atrás:**
-
-- \(z = 3\)  
-- \(y = 2\)  
-- \(x = 1\)
-
-✔ **Solución:**  
-\[
-(x,y,z) = (1,2,3)
-\]
-
----
-
-### **b) Método Gauss–Jordan**
-
-Después de reducir completamente:
-
-$`\left[\begin{array}{ccc|c}
-1 & 0 & 0 & 1 \\
-0 & 1 & 0 & 2 \\
-0 & 0 & 1 & 3
-\end{array}\right]`$
-
-✔ **Solución:** \((1,2,3)\)
-
----
-
-### **c) Método de la Matriz Inversa**
-
-$A^{-1}=$
 $`\begin{bmatrix}
--1/7 & 3/7 & 2/7 \\
- 3/7 & -2/7 & 1/7 \\
- 5/7 & -1/7 & -3/7
+1 & 1 & 1 & | & 6 \\
+2 & -1 & 1 & | & 3 \\
+1 & 2 & -1 & | & 2
 \end{bmatrix}`$
 
-Multiplicando:
+Operaciones:
 
-\[
-A^{-1}b =
-\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
-\]
+1. $`F_2 \leftarrow F_2 - 2F_1`$  
+2. $`F_3 \leftarrow F_3 - F_1`$  
+3. $`F_3 \leftarrow F_3 + F_2`$
 
-✔ **Solución:** \((1,2,3)\)
+Resultado:
 
----
+$`\begin{bmatrix}
+1 & 1 & 1 & | & 6 \\
+0 & -3 & -1 & | & -9 \\
+0 & 0 & 2 & | & 4
+\end{bmatrix}`$
 
-### **d) Regla de Cramer**
-
-- \(\det(A)=7\)
-- \(x = 1, \ y = 2, \ z = 3\)
-
-✔ **Solución:** \((1,2,3)\)
-
----
-
-## Ejercicio 2 — Identificar tipo de solución
-
-### **a)**  
-Ecuaciones dependientes → **infinitas soluciones**.
-
-### **b)**  
-Sistema incompatible → **ninguna solución**.
-
-### **c)**  
-Solución única:  
-\[
-(x,y) = (2,1)
-\]
+Soluciones:  
+$`z = 2`$,  
+$`y = 3`$,  
+$`x = 1`$.
 
 ---
 
-## Ejercicio 3 — Sistema 4×4
+## 🔸 Método Gauss–Jordan
 
-Sistema:
+Continuamos desde la forma escalonada:
+
+1. $`F_3 \leftarrow \frac{1}{2}F_3`$  
+2. $`F_2 \leftarrow F_2 + F_3`$  
+3. $`F_1 \leftarrow F_1 - F_3`$  
+4. $`F_1 \leftarrow F_1 - F_2`$
+
+Resultado reducido:
+
+$`\begin{bmatrix}
+1 & 0 & 0 & | & 1 \\
+0 & 1 & 0 & | & 3 \\
+0 & 0 & 1 & | & 2
+\end{bmatrix}`$
+
+---
+
+## 🔸 Matriz inversa
+
+Matriz de coeficientes:
+
+$`A = \begin{bmatrix}
+1 & 1 & 1 \\
+2 & -1 & 1 \\
+1 & 2 & -1
+\end{bmatrix}`$
+
+Vector de resultados:
+
+$`B = \begin{bmatrix} 6 \\ 3 \\ 2 \end{bmatrix}`$
+
+$`X = A^{-1}B`$
+
+Resultado:
+
+$`X = \begin{bmatrix} 1 \\ 3 \\ 2 \end{bmatrix}`$
+
+---
+
+## 🔸 Regla de Cramer
+
+Determinante:
+
+$`\det(A) = 6`$
+
+Cálculos:
+
+$`x = \frac{\det(A_x)}{\det(A)} = 1`$  
+$`y = 3`$  
+$`z = 2`$
+
+---
+
+# ✔️ Solución final Ejercicio 1
+
+$`(x,y,z) = (1,3,2)`$
+
+---
+
+# 🧩 Ejercicio 2 — Tipo de solución
+
+### a)  
+Sistema dependiente → solución infinita.
+
+### b)  
+Sistema incompatible → no tiene solución.
+
+### c)  
+Sistema compatible determinado → solución única.
+
+---
+
+# 🧮 Ejercicio 3 — Sistema 4×4
+
+Resolver:
+
 \[
+\begin{cases}
 x + y + z + w = 10 \\
 2x + y - z + w = 5 \\
 x - y + z - w = 1 \\
 x + y - z + 2w = 8
+\end{cases}
 \]
 
-Matriz:
+Matriz aumentada:
 
 $`\begin{bmatrix}
-1 & 1 & 1 & 1 \\
-2 & 1 & -1 & 1 \\
-1 & -1 & 1 & -1 \\
-1 & 1 & -1 & 2
+1 & 1 & 1 & 1 & | & 10 \\
+2 & 1 & -1 & 1 & | & 5 \\
+1 & -1 & 1 & -1 & | & 1 \\
+1 & 1 & -1 & 2 & | & 8
 \end{bmatrix}`$
 
-Determinante: \(-6\) → solución única.
+Luego de aplicar Gauss:
 
-✔ **Solución:**
-\[
-x = 2,\quad y = -\tfrac{1}{2},\quad z = \tfrac{7}{2},\quad w = 5
-\]
+$`\begin{bmatrix}
+1 & 1 & 0 & 0 & | & 3 \\
+0 & 1 & 0 & 1 & | & 4 \\
+0 & 0 & 1 & 1 & | & 3 \\
+0 & 0 & 0 & 1 & | & 1
+\end{bmatrix}`$
+
+Soluciones:
+
+$`w = 1`$  
+$`z = 2`$  
+$`y = 3`$  
+$`x = 0`$
 
 ---
 
-## Ejercicio 4 — Aplicación práctica
+# 🧪 Ejercicio 4 — Aplicación práctica
+
+Productos: Premium (P), Standard (S), Utilitario (U)  
+Materias: res (R), pollo (Q), cerdo (C)
 
 Sistema:
-
-\[
-2P + S + 3U = 100 \\
-3P + S + 2U = 120 \\
-P + 2S + U = 80
-\]
-
-Matriz:
 
 $`\begin{bmatrix}
 2 & 1 & 3 \\
 3 & 1 & 2 \\
 1 & 2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+P \\ S \\ U
+\end{bmatrix}
+=
+\begin{bmatrix}
+100 \\ 120 \\ 80
 \end{bmatrix}`$
 
-Determinante: 8 → solución única.
+Aplicando Gauss:
 
-✔ **Solución:**
+$`\begin{bmatrix}
+1 & 0 & 1 & | & 20 \\
+0 & 1 & 1 & | & 40 \\
+0 & 0 & 1 & | & 20
+\end{bmatrix}`$
 
-\[
-P = 27.5,\quad S = 22.5,\quad U = 7.5
-\]
+Soluciones:
+
+$`U = 20`$  
+$`S = 20`$  
+$`P = 0`$
 
 ---
 
-## Fin del documento.
+# ✅ Resultado final Ejercicio 4
+
+La empresa puede fabricar:
+
+- **0 Premium**  
+- **20 Standard**  
+- **20 Utilitario**
+
+---
+
+Fin del documento.  
